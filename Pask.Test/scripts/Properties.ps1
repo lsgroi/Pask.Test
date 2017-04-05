@@ -1,0 +1,1 @@
+Set-Property TestNamePattern -Default "Tests?$"

@@ -43,10 +43,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
     <None Include="Pask.Test.nuspec" />
+    <None Include="scripts\Properties.ps1" />
+    <None Include="scripts\Pask.Test.Tests.ps1" />
+    <None Include="scripts\Pask.Test.ps1" />
     <None Include="tools\Init.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="scripts\" />
     <Folder Include="tasks\" />
   </ItemGroup>
   <ItemGroup>
