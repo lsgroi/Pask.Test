@@ -61,7 +61,7 @@ function script:Get-SolutionTestProjects {
 .OUTPUTS
     None
 #>
-function script:GetTestAssemblies {
+function script:Get-TestAssemblies {
     param([string]$TestFrameworkAssemblyName = "")
 
     Import-Script Properties.MSBuild -Package Pask
@@ -72,7 +72,7 @@ function script:GetTestAssemblies {
                       | Join-Path -ChildPath "bin" `
                       | Get-ChildItem -Recurse -File -Include *.dll `
                       | Where {
-                          ((Split-Path (Split-Path $_ -Parent) -Leaf) -eq $BuildConfiguration -or (Split-Path (Split-Path $_ -Parent) -Leaf) -eq "bin")
+                          ((Split-Path (Split-Path $_ -Parent) -Leaf) -eq $BuildConfiguration -or (Split-Path (Split-Path $_ -Parent) -Leaf) -eq "bin") `
                           -and $_.BaseName -match $TestNamePattern
                         } `
                       | Select -ExpandProperty FullName
