@@ -26,8 +26,8 @@ namespace ClassLibrary.UnitTests
     }
 
     [Tags("tag2")]
-    [Subject(typeof(System.Object))]
-    public class SystemObject : WithSubject<System.Object>
+    [Subject(typeof(int))]
+    public class IntSpec : WithSubject<System.Object>
     {
         It should_be_true = () => true.ShouldBeTrue();
 
