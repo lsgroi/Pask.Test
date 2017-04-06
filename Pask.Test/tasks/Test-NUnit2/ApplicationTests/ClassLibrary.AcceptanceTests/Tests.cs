@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace ClassLibrary.IntegrationTests
+namespace ClassLibrary.AcceptanceTests
 {
     [TestFixture]
     public class Tests
