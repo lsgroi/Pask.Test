@@ -1,0 +1,37 @@
+$Here = Split-Path -Parent $MyInvocation.MyCommand.Path
+Import-Script Pask.Tests.Infrastructure
+
+Describe "Test-NUnit" {
+    BeforeAll {
+        # Arrange
+        $TestSolutionFullPath = Join-Path $Here "Test-NUnit"
+        Install-NuGetPackage -Name Pask.Test
+    }
+
+    Context "No tests" {
+        BeforeAll {
+            # Act
+            Invoke-Pask (Join-Path $Here "NoTests") -Task Restore-NuGetPackages, Clean, Build, Test-NUnit
+        }
+
+        It "does not create the NUnit XML report" {
+            Join-Path $Here "NoTests\.build\output\TestsResults\NUnit.xml" | Should Not Exist
+        }
+    }
+
+    Context "Run all NUnit tests" {
+        BeforeAll {
+            # Act
+            Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-NUnit
+        }
+
+        It "creates the NUnit XML report" {
+            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+        }
+
+        It "runs all the tests" {
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            $NUnitResult.'test-run'.total | Should Be 3
+        }
+    }
+}

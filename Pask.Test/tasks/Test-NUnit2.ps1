@@ -4,7 +4,7 @@ Set-Property NUnitFrameworkVersion -Default "4.6"
 
 # Synopsis: Run NUnit 2.x tests
 Task Test-NUnit2 {
-    $Assemblies = Get-TestAssemblies -TestFrameworkAssemblyName "nunit.framework.dll"
+    $Assemblies = Get-TestAssemblies -TestFrameworkAssemblyName "nunit.framework"
 
     if ($Assemblies) {
         $NUnit = Join-Path (Get-PackageDir "NUnit.Runners") "tools\nunit-console.exe"
