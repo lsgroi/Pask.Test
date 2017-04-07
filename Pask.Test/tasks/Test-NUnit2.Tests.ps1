@@ -19,7 +19,7 @@ Describe "Test-NUnit2" {
         }
     }
 
-    Context "Run all NUnit tests" {
+    Context "All tests" {
         BeforeAll {
             # Act
             Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-NUnit2
@@ -32,12 +32,12 @@ Describe "Test-NUnit2" {
         It "runs all the tests" {
             [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
             $NUnitResult.'test-results'.total | Should Be 4
-            $TestCaseName = @('ClassLibrary.UnitTests.Tests.Test_1','ClassLibrary.UnitTests.Tests.Test_2','ClassLibrary.IntegrationTests.Tests.Test_3', 'ClassLibrary.IntegrationTests.Tests.Test_4')
+            $TestCaseName = @('ClassLibrary.UnitTests.Tests.Test_1','ClassLibrary.UnitTests.Tests.Test_2','ClassLibrary.AcceptanceTests.Tests.Test_3', 'ClassLibrary.AcceptanceTests.Tests.Test_4')
             $NUnitResult.'test-results'.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-case'.name | Should Be $TestCaseName
         }
     }
 
-    Context "Run all NUnit tests wit ha category" {
+    Context "Tests with categories" {
         BeforeAll {
             # Act
             Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-NUnit2 -NUnitCategory "category1,category2"
@@ -47,12 +47,29 @@ Describe "Test-NUnit2" {
             Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
         }
 
-        It "runs all the tests maching the category" {
+        It "runs all the tests with the given categories" {
             [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
             $NUnitResult.'test-results'.total | Should Be 3
-            $TestCaseName = @('ClassLibrary.UnitTests.Tests.Test_1','ClassLibrary.UnitTests.Tests.Test_2','ClassLibrary.IntegrationTests.Tests.Test_4')
+            $TestCaseName = @('ClassLibrary.UnitTests.Tests.Test_1','ClassLibrary.UnitTests.Tests.Test_2','ClassLibrary.AcceptanceTests.Tests.Test_4')
             $NUnitResult.'test-results'.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-case'.name | Should Be $TestCaseName
         }
     }
 
+    Context "Tests excluding a category" {
+        BeforeAll {
+            # Act
+            Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-NUnit2 -NUnitExcludeCategory "category1"
+        }
+
+        It "creates the NUnit XML report" {
+            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+        }
+
+        It "runs all the tests without the given category" {
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            $NUnitResult.'test-results'.total | Should Be 3
+            $TestCaseName = @('ClassLibrary.UnitTests.Tests.Test_2','ClassLibrary.AcceptanceTests.Tests.Test_3','ClassLibrary.AcceptanceTests.Tests.Test_4')
+            $NUnitResult.'test-results'.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-case'.name | Should Be $TestCaseName
+        }
+    }
 }

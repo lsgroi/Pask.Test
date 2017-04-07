@@ -19,7 +19,7 @@ Describe "Test-NUnit" {
         }
     }
 
-    Context "Run all NUnit tests" {
+    Context "All tests" {
         BeforeAll {
             # Act
             Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-NUnit
@@ -36,7 +36,7 @@ Describe "Test-NUnit" {
         }
     }
 
-    Context "Run all NUnit tests matching a category" {
+    Context "Tests with a category" {
         BeforeAll {
             # Act
             Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-NUnit -NUnitTestSelection "cat == category2"
@@ -46,14 +46,14 @@ Describe "Test-NUnit" {
             Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
         }
 
-        It "runs all the tests matching the category" {
+        It "runs all the tests with the given category" {
             [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 2
             $NUnitResult."test-run"."test-suite"."test-suite"."test-suite"."test-suite"."test-case".methodname | Should Be @('Test_2', 'Test_4')
         }
     }
 
-    Context "Run all NUnit tests excluding categories" {
+    Context "Tests excluding categories" {
         BeforeAll {
             # Act
             Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-NUnit -NUnitTestSelection "cat != category1 && cat != category2"
@@ -63,7 +63,7 @@ Describe "Test-NUnit" {
             Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
         }
 
-        It "runs all the tests without the excluded categories" {
+        It "runs all the tests without the given categories" {
             [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 1
             $NUnitResult."test-run"."test-suite"."test-suite"."test-suite"."test-suite"."test-case".methodname | Should Be 'Test_3'

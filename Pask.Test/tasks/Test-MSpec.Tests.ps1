@@ -19,7 +19,7 @@ Describe "Test-MSpec" {
         }
     }
 
-    Context "Run all MSpec tests" {
+    Context "All tests" {
         BeforeAll {
             # Act
             Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-MSpec
@@ -38,7 +38,7 @@ Describe "Test-MSpec" {
         }
     }
 
-    Context "Run all MSpec tests with tags" {
+    Context "Tests with tags" {
         BeforeAll {
             # Act
             Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-MSpec -MSpecTag "tag1,tag2"
@@ -48,7 +48,7 @@ Describe "Test-MSpec" {
             Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml" | Should Exist
         }
 
-        It "runs all the tests matching the tags" {
+        It "runs all the tests matching the given tags" {
             [xml]$MSpecResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml")
             $MSpecResult.MSpec.assembly.concern.context | Measure | select -ExpandProperty Count | Should Be 3
             $MSpecResult.MSpec.assembly.concern.context.name | Where { $_ -eq "StringSpec"} | Measure | select -ExpandProperty Count | Should Be 2
@@ -56,7 +56,7 @@ Describe "Test-MSpec" {
         }
     }
 
-    Context "Run all MSpec tests excluding a tag" {
+    Context "Tests excluding a tag" {
         BeforeAll {
             # Act
             Invoke-Pask $TestSolutionFullPath -Task Restore-NuGetPackages, Clean, Build, Test-MSpec -MSpecExcludeTag "tag2"
@@ -66,7 +66,7 @@ Describe "Test-MSpec" {
             Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml" | Should Exist
         }
 
-        It "runs all the tests without the excluded tag" {
+        It "runs all the tests without the given tag" {
             [xml]$MSpecResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml")
             $MSpecResult.MSpec.assembly.concern.context | Measure | select -ExpandProperty Count | Should Be 3
             $MSpecResult.MSpec.assembly.concern.context.name | Where { $_ -eq "StringSpec"} | Measure | select -ExpandProperty Count | Should Be 2
