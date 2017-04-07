@@ -46,6 +46,8 @@
     <None Include="scripts\Properties.ps1" />
     <None Include="scripts\Pask.Test.Tests.ps1" />
     <None Include="scripts\Pask.Test.ps1" />
+    <None Include="tasks\New-TestsArtifact.Tests.ps1" />
+    <None Include="tasks\New-TestsArtifact.ps1" />
     <None Include="tasks\Test-MSpec.ps1" />
     <None Include="tasks\Test.Tests.ps1" />
     <None Include="tasks\Test-NUnit2.Tests.ps1" />
