@@ -49,6 +49,7 @@
     <None Include="tasks\New-TestsArtifact.Tests.ps1" />
     <None Include="tasks\New-TestsArtifact.ps1" />
     <None Include="tasks\Extract-TestsArtifact.ps1" />
+    <None Include="tasks\ZipExtract-TestsArtifact.Tests.ps1" />
     <None Include="tasks\Zip-TestsArtifact.ps1" />
     <None Include="tasks\Test-MSpec.ps1" />
     <None Include="tasks\Test.Tests.ps1" />
