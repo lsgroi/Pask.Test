@@ -65,6 +65,7 @@ function script:Get-TestAssemblies {
     param([string]$TestFrameworkAssemblyName = "")
 
     Import-Script Properties.MSBuild -Package Pask
+    Import-Properties -Package Pask.Test
 
     $Assemblies = Get-SolutionTestProjects `
                       | Where { $_.Name -match $TestNamePattern } `

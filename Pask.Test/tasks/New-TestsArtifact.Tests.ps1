@@ -15,14 +15,14 @@ Describe "New-TestsArtifact" {
         }
 
         It "creates the tests artifact directory" {
-            Join-Path $TestSolutionFullPath ".build\output\Tests" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests" | Should Exist
         }
 
         It "the artifact has all the test assemblies" {
-            Join-Path $TestSolutionFullPath ".build\output\Tests\Tests\ClassLibrary.Tests\ClassLibrary.Tests.dll" | Should Exist
-            Join-Path $TestSolutionFullPath ".build\output\Tests\Unit\ClassLibrary.UnitTests\ClassLibrary.UnitTests.dll" | Should Exist
-            Join-Path $TestSolutionFullPath ".build\output\Tests\Integration\ClassLibrary.IntegrationTests\ClassLibrary.IntegrationTests.dll" | Should Exist
-            Join-Path $TestSolutionFullPath ".build\output\Tests\Acceptance\ClassLibrary.AcceptanceTests\ClassLibrary.AcceptanceTests.dll" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests\Tests\ClassLibrary.Tests\ClassLibrary.Tests.dll" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests\Unit\ClassLibrary.UnitTests\ClassLibrary.UnitTests.dll" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests\Integration\ClassLibrary.IntegrationTests\ClassLibrary.IntegrationTests.dll" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests\Acceptance\ClassLibrary.AcceptanceTests\ClassLibrary.AcceptanceTests.dll" | Should Exist
         }
     }
 
@@ -33,12 +33,12 @@ Describe "New-TestsArtifact" {
         }
 
         It "creates the tests artifact directory" {
-            Join-Path $TestSolutionFullPath ".build\output\Tests" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests" | Should Exist
         }
 
         It "the artifact has all the test assemblies matching the filter" {
-            Join-Path $TestSolutionFullPath ".build\output\Tests\Acceptance\ClassLibrary.AcceptanceTests\ClassLibrary.AcceptanceTests.dll" | Should Exist
-            Get-ChildItem -Path (Join-Path $TestSolutionFullPath ".build\output\Tests") -Exclude "Acceptance" | Should BeNullOrEmpty
+            Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests\Acceptance\ClassLibrary.AcceptanceTests\ClassLibrary.AcceptanceTests.dll" | Should Exist
+            Get-ChildItem -Path (Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests") -Exclude "Acceptance" | Should BeNullOrEmpty
         }
     }
 }
