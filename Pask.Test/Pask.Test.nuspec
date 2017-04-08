@@ -11,8 +11,8 @@
     <licenseUrl>https://github.com/lsgroi/Pask.Test/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/lsgroi/Pask.Test</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/lsgroi/Pask/master/Pask.png</iconUrl>
-    <summary>Pask extension which provides test automation functionality.</summary>
-    <description>Pask extension which provides test automation functionality.</description>
+    <summary>Pask extension that provides test automation functionality.</summary>
+    <description>Pask extension that provides test automation functionality.</description>
     <tags>Invoke-Build PowerShell BuildAutomation Pask TestAutomation</tags>
     <copyright>Copyright © 2017 Luca Sgroi under the Apache License</copyright>
     <releaseNotes>https://github.com/lsgroi/Pask.Test/releases</releaseNotes>
