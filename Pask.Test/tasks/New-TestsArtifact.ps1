@@ -1,3 +1,4 @@
+Import-Properties -Package Pask.Test
 Import-Script Pask.Test -Package Pask.Test
 
 # Synopsis: Create the tests artifact by copying MSBuild output for each test found in the solution to the build output directory
