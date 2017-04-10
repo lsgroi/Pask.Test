@@ -8,4 +8,4 @@
 This [Pask extension](https://github.com/lsgroi/Pask/wiki/Extensions) provides test automation functionality.  
 See the [Wiki](https://github.com/lsgroi/Pask.Test/wiki) for full documentation.
 
-Pask.Nuget is Copyright &copy; 2017 Luca Sgroi under the [Apache License](LICENSE).
+Pask.Test is Copyright &copy; 2017 Luca Sgroi under the [Apache License](LICENSE).
