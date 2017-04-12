@@ -68,7 +68,7 @@ function script:Get-TestAssemblies {
 
     if (Test-Path $TestsArtifactFullPath) {
         $Assemblies = Get-ChildItem -Path $TestsArtifactFullPath -Recurse -File -Include *.dll `
-                        | Where { $_.BaseName -match $TestNamePattern } `
+                        | Where { $_.BaseName -match $TestNameArtifactPattern } `
                         | Select -ExpandProperty FullName
     } else {
         Import-Script Properties.MSBuild -Package Pask
