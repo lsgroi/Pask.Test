@@ -64,19 +64,26 @@ function script:Get-SolutionTestProjects {
 function script:Get-TestAssemblies {
     param([string]$TestFrameworkAssemblyName = "")
 
-    Import-Script Properties.MSBuild -Package Pask
     Import-Properties -Package Pask.Test
 
-    $Assemblies = Get-SolutionTestProjects `
-                      | Where { $_.Name -match $TestNamePattern } `
-                      | Select -ExpandProperty Directory `
-                      | Join-Path -ChildPath "bin" `
-                      | Get-ChildItem -Recurse -File -Include *.dll `
-                      | Where {
-                          ((Split-Path (Split-Path $_ -Parent) -Leaf) -eq $BuildConfiguration -or (Split-Path (Split-Path $_ -Parent) -Leaf) -eq "bin") `
-                          -and $_.BaseName -match $TestNamePattern
-                        } `
-                      | Select -ExpandProperty FullName
+    if (Test-Path $TestsArtifactFullPath) {
+        $Assemblies = Get-ChildItem -Path $TestsArtifactFullPath -Recurse -File -Include *.dll `
+                        | Where { $_.BaseName -match $TestNamePattern } `
+                        | Select -ExpandProperty FullName
+    } else {
+        Import-Script Properties.MSBuild -Package Pask
+    
+        $Assemblies = Get-SolutionTestProjects `
+                            | Where { $_.Name -match $TestNamePattern } `
+                            | Select -ExpandProperty Directory `
+                            | Join-Path -ChildPath "bin" `
+                            | Get-ChildItem -Recurse -File -Include *.dll `
+                            | Where {
+                                ((Split-Path (Split-Path $_ -Parent) -Leaf) -eq $BuildConfiguration -or (Split-Path (Split-Path $_ -Parent) -Leaf) -eq "bin") `
+                                -and $_.BaseName -match $TestNamePattern
+                                } `
+                            | Select -ExpandProperty FullName
+    }
 
     if(-not $TestFrameworkAssemblyName) {
         return $Assemblies
