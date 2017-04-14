@@ -1,7 +1,4 @@
-Import-Script Pask.Test -Package Pask.Test
-
-Set-Property MSpecTag -Default ""
-Set-Property MSpecExcludeTag -Default ""
+Import-Script Pask.Test, Properties.MSpec -Package Pask.Test
 
 # Synopsis: Run MSpec tests
 Task Test-MSpec {

@@ -1,8 +1,4 @@
-Import-Script Pask.Test -Package Pask.Test
-
-Set-Property NUnitFrameworkVersion -Default "4.6"
-Set-Property NUnitCategory -Default ""
-Set-Property NUnitExcludeCategory -Default ""
+Import-Script Pask.Test, Properties.NUnit2 -Package Pask.Test
 
 # Synopsis: Run NUnit 2.x tests
 Task Test-NUnit2 {

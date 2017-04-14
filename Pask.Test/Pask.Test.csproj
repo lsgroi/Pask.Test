@@ -43,6 +43,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
     <None Include="Pask.Test.nuspec" />
+    <None Include="scripts\Properties.NUnit2.ps1" />
+    <None Include="scripts\Properties.NUnit.ps1" />
+    <None Include="scripts\Properties.MSpec.ps1" />
     <None Include="scripts\Properties.ps1" />
     <None Include="scripts\Pask.Test.Tests.ps1" />
     <None Include="scripts\Pask.Test.ps1" />

@@ -1,6 +1,4 @@
-Import-Script Pask.Test -Package Pask.Test
-
-Set-Property NUnitTestSelection -Default ""
+Import-Script Pask.Test, Properties.NUnit -Package Pask.Test
 
 # Synopsis: Run NUnit tests
 Task Test-NUnit {
