@@ -2,7 +2,7 @@
 
 # Pask.Test
 
-[![Build status](https://ci.appveyor.com/api/projects/status/l4983dsgt52u481e?svg=true)](https://ci.appveyor.com/project/LucaSgroi/pask-test)
+[![Build status](https://ci.appveyor.com/api/projects/status/l4983dsgt52u481e/branch/master?svg=true)](https://ci.appveyor.com/project/LucaSgroi/pask-test/branch/master)
 [![NuGet version](https://img.shields.io/nuget/v/Pask.Test.svg)](https://www.nuget.org/packages/Pask.Test)
 
 This [Pask extension](https://github.com/lsgroi/Pask/wiki/Extensions) provides test automation functionality.  
