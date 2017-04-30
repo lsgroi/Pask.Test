@@ -15,7 +15,7 @@ Describe "Test" {
         }
 
         It "does not create any report" {
-            Join-Path $Here "NoTests\.build\output\TestsResults\*.*" | Should Not Exist
+            Join-Path $Here "NoTests\.build\output\TestResults\*.*" | Should Not Exist
         }
     }
 
@@ -26,20 +26,20 @@ Describe "Test" {
         }
 
         It "creates the MSpec XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\MSpec.xml" | Should Exist
         }
 
         It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
         }
 
         It "runs all MSpec tests" {
-            [xml]$MSpecResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml")
+            [xml]$MSpecResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\MSpec.xml")
             $MSpecResult.MSpec.assembly.concern.context | Measure | select -ExpandProperty Count | Should Be 4
         }
 
         It "runs all NUnit tests" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 4
         }
     }
@@ -53,20 +53,20 @@ Describe "Test" {
         }
 
         It "creates the MSpec XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\MSpec.xml" | Should Exist
         }
 
         It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
         }
 
         It "runs all MSpec tests" {
-            [xml]$MSpecResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml")
+            [xml]$MSpecResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\MSpec.xml")
             $MSpecResult.MSpec.assembly.concern.context | Measure | select -ExpandProperty Count | Should Be 4
         }
 
         It "runs all NUnit tests" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 4
         }
     }
@@ -80,20 +80,20 @@ Describe "Test" {
         }
 
         It "creates the MSpec XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\MSpec.xml" | Should Exist
         }
 
         It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
         }
 
         It "runs the MSpec tests" {
-            [xml]$MSpecResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\MSpec.xml")
+            [xml]$MSpecResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\MSpec.xml")
             $MSpecResult.MSpec.assembly.concern.context | Measure | select -ExpandProperty Count | Should Be 3
         }
 
         It "runs the NUnit tests" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 2
         }
     }

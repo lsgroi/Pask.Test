@@ -6,7 +6,7 @@ Task Test-MSpec {
 
     if ($Assemblies) {
         $MSpec = Join-Path (Get-PackageDir "Machine.Specifications.Runner.Console") "tools\mspec-clr4.exe"
-        $MSpecTestsResults = Join-Path $TestsResultsFullPath "MSpec.xml"
+        $MSpecTestResults = Join-Path $TestResultsFullPath "MSpec.xml"
         
         if ($MSpecTag) { 
             $Include = @("--include", $MSpecTag) 
@@ -16,9 +16,9 @@ Task Test-MSpec {
             $Exclude = @("--exclude", $MSpecExcludeTag)
         }
 
-        New-Directory $TestsResultsFullPath | Out-Null
+        New-Directory $TestResultsFullPath | Out-Null
 
-        Exec { & "$MSpec" --xml "$MSpecTestsResults" $Include $Exclude --progress $Assemblies }
+        Exec { & "$MSpec" --xml "$MSpecTestResults" $Include $Exclude --progress $Assemblies }
     } else {
         Write-BuildMessage "MSpec tests not found" -ForegroundColor "Yellow"
     }

@@ -15,7 +15,7 @@ Describe "Test-NUnit2" {
         }
 
         It "does not create the NUnit XML report" {
-            Join-Path $Here "NoTests\.build\output\TestsResults\NUnit.xml" | Should Not Exist
+            Join-Path $Here "NoTests\.build\output\TestResults\NUnit.xml" | Should Not Exist
         }
     }
 
@@ -26,11 +26,11 @@ Describe "Test-NUnit2" {
         }
 
         It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
         }
 
         It "runs all the tests" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-results'.total | Should Be 4
             $TestCaseName = @('ClassLibrary.UnitTests.Tests.Test_1','ClassLibrary.UnitTests.Tests.Test_2','ClassLibrary.AcceptanceTests.Tests.Test_3', 'ClassLibrary.AcceptanceTests.Tests.Test_4')
             $NUnitResult.'test-results'.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-case'.name | Should Be $TestCaseName
@@ -44,11 +44,11 @@ Describe "Test-NUnit2" {
         }
 
         It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
         }
 
         It "runs all the tests with the given categories" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-results'.total | Should Be 3
             $TestCaseName = @('ClassLibrary.UnitTests.Tests.Test_1','ClassLibrary.UnitTests.Tests.Test_2','ClassLibrary.AcceptanceTests.Tests.Test_4')
             $NUnitResult.'test-results'.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-case'.name | Should Be $TestCaseName
@@ -62,11 +62,11 @@ Describe "Test-NUnit2" {
         }
 
         It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
         }
 
         It "runs all the tests without the given category" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-results'.total | Should Be 3
             $TestCaseName = @('ClassLibrary.UnitTests.Tests.Test_2','ClassLibrary.AcceptanceTests.Tests.Test_3','ClassLibrary.AcceptanceTests.Tests.Test_4')
             $NUnitResult.'test-results'.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-suite'.results.'test-case'.name | Should Be $TestCaseName

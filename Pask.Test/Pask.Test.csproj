@@ -43,6 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
     <None Include="Pask.Test.nuspec" />
+    <None Include="scripts\Properties.VSTest.ps1" />
     <None Include="scripts\Properties.NUnit2.ps1" />
     <None Include="scripts\Properties.NUnit.ps1" />
     <None Include="scripts\Properties.MSpec.ps1" />
@@ -52,6 +53,8 @@
     <None Include="tasks\New-TestsArtifact.Tests.ps1" />
     <None Include="tasks\New-TestsArtifact.ps1" />
     <None Include="tasks\Extract-TestsArtifact.ps1" />
+    <None Include="tasks\Test-VSTest.Tests.ps1" />
+    <None Include="tasks\Test-VSTest.ps1" />
     <None Include="tasks\ZipExtract-TestsArtifact.Tests.ps1" />
     <None Include="tasks\Zip-TestsArtifact.ps1" />
     <None Include="tasks\Test-MSpec.ps1" />

@@ -15,7 +15,7 @@ Describe "Test-NUnit" {
         }
 
         It "does not create the NUnit XML report" {
-            Join-Path $Here "NoTests\.build\output\TestsResults\NUnit.xml" | Should Not Exist
+            Join-Path $Here "NoTests\.build\output\TestResults\NUnit.xml" | Should Not Exist
         }
     }
 
@@ -26,11 +26,11 @@ Describe "Test-NUnit" {
         }
 
         It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
         }
 
         It "runs all the tests" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 4
             $NUnitResult."test-run"."test-suite"."test-suite"."test-suite"."test-suite"."test-case".methodname | Should Be @('Test_1', 'Test_2', 'Test_3', 'Test_4')
         }
@@ -43,11 +43,11 @@ Describe "Test-NUnit" {
         }
 
         It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
         }
 
         It "runs all the tests with the given category" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 2
             $NUnitResult."test-run"."test-suite"."test-suite"."test-suite"."test-suite"."test-case".methodname | Should Be @('Test_2', 'Test_4')
         }
@@ -60,11 +60,11 @@ Describe "Test-NUnit" {
         }
 
         It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml" | Should Exist
+            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
         }
 
         It "runs all the tests without the given categories" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestsResults\NUnit.xml")
+            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 1
             $NUnitResult."test-run"."test-suite"."test-suite"."test-suite"."test-suite"."test-case".methodname | Should Be 'Test_3'
         }

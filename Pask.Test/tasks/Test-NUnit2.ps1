@@ -6,7 +6,7 @@ Task Test-NUnit2 {
 
     if ($Assemblies) {
         $NUnit = Join-Path (Get-PackageDir "NUnit.Runners") "tools\nunit-console.exe"
-        $NUnitTestsResults = Join-Path $TestsResultsFullPath "NUnit.xml"
+        $NUnitTestResults = Join-Path $TestResultsFullPath "NUnit.xml"
         
         if ($NUnitCategory) { 
             $Include = "/include:$NUnitCategory"
@@ -16,9 +16,9 @@ Task Test-NUnit2 {
             $Exclude = "/exclude:$NUnitExcludeCategory"
         }
 
-        New-Directory $TestsResultsFullPath | Out-Null
+        New-Directory $TestResultsFullPath | Out-Null
 
-        Exec { & "$NUnit" /work:"$TestsResultsFullPath" /result:"$NUnitTestsResults" /framework:"net-$NUnitFrameworkVersion" $Include $Exclude /nologo $Assemblies }
+        Exec { & "$NUnit" /work:"$TestResultsFullPath" /result:"$NUnitTestResults" /framework:"net-$NUnitFrameworkVersion" $Include $Exclude /nologo $Assemblies }
     } else {
         Write-BuildMessage "NUnit tests not found" -ForegroundColor "Yellow"
     }
