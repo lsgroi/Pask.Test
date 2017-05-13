@@ -33,7 +33,7 @@ Task Test-VSTest {
 
             if (Test-Path TestResults) {
                 Move-Item -Path TestResults\* .
-                Remove-ItemSilently TestResults
+                Remove-PaskItem TestResults
             }
         } catch {
             throw $_

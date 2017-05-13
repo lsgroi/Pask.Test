@@ -10,7 +10,7 @@ Task Extract-TestsArtifact {
     $7za = Join-Path (Get-PackageDir "7-Zip.CommandLine") "tools\7za.exe"
 	
     # Remove and re-create the artifact directory
-    Remove-ItemSilently $TestsArtifactFullPath
+    Remove-PaskItem $TestsArtifactFullPath
     New-Directory $TestsArtifactFullPath | Out-Null
 	
     "Extracting artifact {0}" -f $ZipArtifact.Name

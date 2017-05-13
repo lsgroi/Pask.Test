@@ -27,7 +27,7 @@ Describe "ZipExtract-TestsArtifact" {
         BeforeAll {
             # Arrange
             Invoke-Pask $TestSolutionFullPath -Task Clean, Build, New-TestsArtifact, Zip-TestsArtifact
-            Remove-ItemSilently (Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests")
+            Remove-PaskItem (Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.Tests")
             $ZipArtifact = Get-ChildItem -Path (Join-Path $TestSolutionFullPath ".build\output\ClassLibrary.*.zip")
             Rename-Item -Path $ZipArtifact.FullName -NewName ($ZipArtifact.Name -replace "ClassLibrary.Tests", "NewClassLibrary.Tests")
             
