@@ -66,9 +66,9 @@ function script:Get-TestAssemblies {
 
     Import-Properties -Package Pask.Test
 
-    if (Test-Path $TestsArtifactFullPath) {
+    if ($TestFromArtifact -and $TestFromArtifact -eq $true) {
         $Assemblies = Get-ChildItem -Path $TestsArtifactFullPath -Recurse -File -Include *.dll `
-                        | Where { $_.BaseName -match $TestNameArtifactPattern } `
+                        | Where { $_.BaseName -match $TestNamePattern } `
                         | Select -ExpandProperty FullName
     } else {
         Import-Script Properties.MSBuild -Package Pask
@@ -77,6 +77,7 @@ function script:Get-TestAssemblies {
                             | Where { $_.Name -match $TestNamePattern } `
                             | Select -ExpandProperty Directory `
                             | Join-Path -ChildPath "bin" `
+                            | Where { Test-Path $_ } `
                             | Get-ChildItem -Recurse -File -Include *.dll `
                             | Where {
                                 ((Split-Path (Split-Path $_ -Parent) -Leaf) -eq $BuildConfiguration -or (Split-Path (Split-Path $_ -Parent) -Leaf) -eq "bin") `
