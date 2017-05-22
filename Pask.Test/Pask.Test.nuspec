@@ -13,7 +13,7 @@
     <iconUrl>https://raw.githubusercontent.com/lsgroi/Pask/master/Pask.png</iconUrl>
     <summary>Pask extension that provides test automation functionality.</summary>
     <description>Pask extension that provides test automation functionality.</description>
-    <tags>PowerShell Build Automation Script Invoke-Build Test MSpec NUnit</tags>
+    <tags>PowerShell Build Automation Script Invoke-Build Test MSpec NUnit VSTest</tags>
     <copyright>Copyright © 2017 Luca Sgroi under the Apache License</copyright>
     <releaseNotes>https://github.com/lsgroi/Pask.Test/releases</releaseNotes>
     <dependencies>
