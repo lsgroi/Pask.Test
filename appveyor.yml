@@ -43,7 +43,7 @@
     - path: .build\output\*.nupkg
   deploy: off
   test: off
-    skip_commits:
+  skip_commits:
     files:
       - appveyor.yml
       - LICENSE
