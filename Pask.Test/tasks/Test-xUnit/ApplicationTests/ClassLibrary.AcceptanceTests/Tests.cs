@@ -1,17 +1,18 @@
-﻿using NUnit.Framework;
+﻿
+using Xunit;
 
-namespace ClassLibrary.IntegrationTests
+namespace ClassLibrary.AcceptanceTests
 {
-    [TestFixture]
     public class Tests
     {
-        [Test]
+        [Fact]
         public void Test_3()
         {
             Assert.True(true);
         }
 
-        [Test]
+        [Fact]
+        [Trait("Category", "category2")]
         public void Test_4()
         {
             Assert.True(true);

@@ -1,18 +1,18 @@
 ﻿using NUnit.Framework;
 
-namespace ClassLibrary.UnitTests
+namespace ClassLibrary.IntegrationTests
 {
     [TestFixture]
-    public class Tests
+    public class NUnitTests
     {
         [Test]
-        public void Test_1()
+        public void Test_3()
         {
             Assert.True(true);
         }
 
         [Test]
-        public void Test_2()
+        public void Test_4()
         {
             Assert.True(true);
         }

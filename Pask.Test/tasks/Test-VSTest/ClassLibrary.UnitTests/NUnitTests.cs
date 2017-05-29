@@ -3,7 +3,7 @@
 namespace ClassLibrary.UnitTests
 {
     [TestFixture]
-    public class Tests
+    public class NUnitTests
     {
         [Test]
         [Category("category1")]

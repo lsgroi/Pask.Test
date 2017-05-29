@@ -31,7 +31,7 @@ Describe "Test-VSTest" {
 
         It "runs all the tests" {
             [xml]$TestResult = Get-Content -Path (Get-Item -Path (Join-Path $TestSolutionFullPath ".build\output\TestResults\*.trx")).FullName
-            $TestResult.TestRun.ResultSummary.Counters.passed | Should Be 8
+            $TestResult.TestRun.ResultSummary.Counters.passed | Should Be 12
         }
     }
 
@@ -47,7 +47,7 @@ Describe "Test-VSTest" {
 
         It "runs all the tests with the given category" {
             [xml]$TestResult = Get-Content -Path (Get-Item -Path (Join-Path $TestSolutionFullPath ".build\output\TestResults\*.trx")).FullName
-            $TestResult.TestRun.ResultSummary.Counters.passed | Should Be 6 # MSpec adapter does not support tags
+            $TestResult.TestRun.ResultSummary.Counters.passed | Should Be 7 # MSpec adapter does not support tags
         }
     }
 
@@ -79,7 +79,7 @@ Describe "Test-VSTest" {
 
         It "runs all the tests" {
             [xml]$TestResult = Get-Content -Path (Get-Item -Path (Join-Path $TestResultsDirectory "*.trx")).FullName
-            $TestResult.TestRun.ResultSummary.Counters.passed | Should Be 8
+            $TestResult.TestRun.ResultSummary.Counters.passed | Should Be 12
         }
     }
 }

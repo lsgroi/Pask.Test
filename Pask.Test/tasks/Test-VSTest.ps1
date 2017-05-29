@@ -30,14 +30,13 @@ Task Test-VSTest {
             }
 
             Exec { & (Get-VSTest) $Assemblies /TestAdapterPath:"$(Get-PackagesDir)" /Parallel /Logger:"$VSTestLogger" $VSTestCaseFilterOption $VSTestPlatformOption $VSTestFrameworkOption $VSTestCodeCoverageOption $VSTestSettingsFileOption }
-
+        } catch {
+            throw $_
+        } finally {
             if (Test-Path TestResults) {
                 Move-Item -Path TestResults\* .
                 Remove-PaskItem TestResults
             }
-        } catch {
-            throw $_
-        } finally {
             Pop-Location
         }
     } else {

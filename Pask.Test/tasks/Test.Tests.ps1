@@ -53,6 +53,11 @@ Describe "Test" {
             [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 4
         }
+
+        It "runs all xUnit tests" {
+            [xml]$xUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\xUnit.xml")
+            ($xUnitResult.assemblies.assembly.total | Measure -Sum).Sum | Should Be 4
+        }
     }
 
     Context "All tests Filtered" {
@@ -77,6 +82,11 @@ Describe "Test" {
         It "runs the NUnit tests" {
             [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
             $NUnitResult.'test-run'.total | Should Be 2
+        }
+
+        It "runs all xUnit tests" {
+            [xml]$xUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\xUnit.xml")
+            ($xUnitResult.assemblies.assembly.total | Measure -Sum).Sum | Should Be 2
         }
     }
 }
