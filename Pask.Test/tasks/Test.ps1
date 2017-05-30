@@ -1,4 +1,4 @@
-Import-Task Test-MSpec, Test-NUnit, Test-xUnit
+Import-Task Test-VSTest
 
 # Synopsis: Run all automated tests
-Task Test Test-MSpec, Test-NUnit, Test-xUnit
+Task Test Test-VSTest

@@ -4,7 +4,7 @@ Import-Script Pask.Tests.Infrastructure
 Describe "TestFrom-TestsPackage" {
     BeforeAll {
         # Arrange
-        $TestSolutionFullPath = Join-Path $Here "Test"
+        $TestSolutionFullPath = Join-Path $Here "Test-VSTest"
         Install-NuGetPackage -Name Pask.Test
     }
 
@@ -26,22 +26,13 @@ Describe "TestFrom-TestsPackage" {
             Invoke-Pask $TestSolutionFullPath -Task TestFrom-TestsPackage
         }
 
-        It "creates the MSpec XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestResults\MSpec.xml" | Should Exist
+        It "creates the TRX test report" {
+            Get-Item -Path (Join-Path $TestSolutionFullPath ".build\output\TestResults\*.trx") | Should Not BeNullOrEmpty
         }
 
-        It "creates the NUnit XML report" {
-            Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml" | Should Exist
-        }
-
-        It "runs all MSpec tests" {
-            [xml]$MSpecResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\MSpec.xml")
-            $MSpecResult.MSpec.assembly.concern.context | Measure | select -ExpandProperty Count | Should Be 4
-        }
-
-        It "runs all NUnit tests" {
-            [xml]$NUnitResult = Get-Content (Join-Path $TestSolutionFullPath ".build\output\TestResults\NUnit.xml")
-            $NUnitResult.'test-run'.total | Should Be 4
+        It "runs all the tests" {
+            [xml]$TestResult = Get-Content -Path (Get-Item -Path (Join-Path $TestSolutionFullPath ".build\output\TestResults\*.trx")).FullName
+            $TestResult.TestRun.ResultSummary.Counters.passed | Should Be 12
         }
     }
 }
