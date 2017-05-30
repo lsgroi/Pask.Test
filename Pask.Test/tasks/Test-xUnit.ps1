@@ -28,7 +28,7 @@ Task Test-xUnit {
 
         New-Directory $TestResultsFullPath | Out-Null
 
-        Exec { & "$xUnit" ("{0}" -f ($Assemblies -join "`" `"")) -xml "$xUnitTestResults" $Trait $NoTrait $Parallel $MaxThreads }
+        Exec { & "$xUnit" "$($Assemblies -join '" "')" -xml "$xUnitTestResults" $Trait $NoTrait $Parallel $MaxThreads }
     } else {
         Write-BuildMessage "xUnit tests not found" -ForegroundColor "Yellow"
     }
