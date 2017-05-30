@@ -8,14 +8,14 @@ Task Test-xUnit {
         $xUnit = Join-Path (Get-PackageDir "xunit.runner.console") "tools\xunit.console.exe"
         $xUnitTestResults = Join-Path $TestResultsFullPath "xUnit.xml"
         
-        $Trait = @()
+        $Assemblies | ForEach { [System.Array]$AssemblyFiles += '"' + $_ + '"' }
+
         if ($xUnitTrait) { 
-            $xUnitTrait | ForEach { $Trait += @("-trait", $_) }
+            $xUnitTrait | ForEach { [System.Array]$Trait += @("-trait", $_) }
         }
 
-        $NoTrait = @()
         if ($xUnitNoTrait) { 
-            $xUnitNoTrait | ForEach { $NoTrait += @("-notrait", $_) }
+            $xUnitNoTrait | ForEach { [System.Array]$NoTrait += @("-notrait", $_) }
         }
 
         if ($xUnitParallel) {
@@ -28,7 +28,7 @@ Task Test-xUnit {
 
         New-Directory $TestResultsFullPath | Out-Null
 
-        Exec { & "$xUnit" "$($Assemblies -join '" "')" -xml "$xUnitTestResults" $Trait $NoTrait $Parallel $MaxThreads }
+        Exec { & "$xUnit" $AssemblyFiles -xml "$xUnitTestResults" $Trait $NoTrait $Parallel $MaxThreads }
     } else {
         Write-BuildMessage "xUnit tests not found" -ForegroundColor "Yellow"
     }
